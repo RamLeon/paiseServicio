@@ -1,0 +1,30 @@
+<!--p>por-capital works!</p-->
+<!--p>por-pais works!</p-->
+<h2>Por Capital</h2>
+<hr>
+<div class="row">
+    <div class="col">
+<!-- (onEnter) cuando no emita la señal onEnter ejecute buscarEmit-->
+<!-- (onDebounce) cuando no emita la señal onDebounce ejecute sugerencia-->
+<!-- placeHolderVar, lo enviamos como parámetro-->
+        <app-pais-input
+            (onEnter)="buscarEmit( $event )"
+            (onDebounce)="sugerencia($event)"
+        placeHolderVar="Buscar por Capital...Harrys"
+        ></app-pais-input>
+    </div>
+</div>
+
+<hr>
+<div class="alert alert-danger"
+     *ngIf="swError">
+    No se encontro data, con {{txBuscar}}
+</div>
+
+<!--El componente pais-tabla muestra los resultados -->
+<div class="row" *ngIf="!swError">
+    <div class="col">
+         <!--[paises_entrada]="paises"-->
+        <app-pais-tabla [paises_entrada]="paises" ></app-pais-tabla>
+    </div>
+</div>
